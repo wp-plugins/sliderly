@@ -32,8 +32,16 @@
 			$html .= "<a href='" . $href . "'>";
 		}
 
-		$html .= "
-				<img src='" . $src . "' alt='" . $title . "' data-desc='" . $desc . "' style='width: " . $width . "px; height: " . $height . "px; '>";
+		if ($type == "slideshow")
+		{
+			$html .= "
+					<img src='" . $src . "' alt='" . $title . "' data-desc='" . $desc . "' style='width: " . $width . "px; height: " . $height . "px; ' />";
+		}
+		else
+		{
+			$html .= "
+					<img src='" . $src . "' alt='" . $title . "' data-desc='" . $desc . "' />";
+		}
 		
 		if ($type == "slideshow")
 		{

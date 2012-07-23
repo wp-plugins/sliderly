@@ -3,7 +3,7 @@ Contributors: dallas22ca
 Tags: slider, easy slider, easiest slider, simple slider, ajax
 Requires at least: 3.4.1
 Tested up to: 3.4.1
-Stable tag: 1.0.4
+Stable tag: 1.0.5
 License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -52,6 +52,9 @@ In the back end of things, it creates a custom post type called `slideshow` and 
 1. The drag-and-drop, ajax-ified management interface.
 
 == Changelog ==
+
+= 1.0.5 =
+Gallery images stripped of their declared height and width.
 
 = 1.0.4 =
 Bugs fixed that shouldn't have gotten by...
