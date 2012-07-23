@@ -3,7 +3,7 @@ Contributors: dallas22ca
 Tags: slider, easy slider, easiest slider, simple slider, ajax
 Requires at least: 3.4.1
 Tested up to: 3.4.1
-Stable tag: 1.0.2
+Stable tag: 1.0.3
 License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -18,11 +18,12 @@ Sliderly is my opinion of how galleries should be managed, whether they're for a
 By default, I chose to go with Slides and Colorbox because they're awesome and flexible.
 
 It comes with:
+
 * Quick edit access via a menu item.
 * Simple shortcode for `slideshow` or `gallery`.
-	1. `[sliderly id=123 type=gallery]`
-	1. Slideshows must declare their width and height `[sliderly id=123 type=slideshow width=500 height=100]`.
-	1. To force links to open in colorbox, set colorbox to true `[sliderly id=123 type=gallery colorbox=true]`.
+* `[sliderly id=123 type=gallery]`
+* Slideshows must declare their width and height `[sliderly id=123 type=slideshow width=500 height=100]`.
+* To force links to open in [colorbox](http://www.jacklmoore.com/colorbox), set colorbox to true `[sliderly id=123 type=gallery colorbox=true]`.
 * Widget with intuitive interface for selecting gallery and type.
 * Hard-codable into a template via `<?php echo do_shortcode('[sliderly id=88 type=slideshow]'); ?>`.
 
