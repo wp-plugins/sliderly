@@ -1,0 +1,101 @@
+<?php
+
+class SliderlyWidget extends WP_Widget {
+
+	function SliderlyWidget() {
+		// Instantiate the parent object
+		parent::__construct( false, 'Sliderly' );
+	}
+
+	function widget( $args, $instance ) {
+		extract($args, EXTR_SKIP);
+		echo $before_widget;
+		$title = empty($instance['title']) ? ' ' : apply_filters('widget_title', $instance['title']);
+		if ( !empty( $title ) ) { echo $before_title . $title . $after_title; };
+		
+		$id = $instance['slideshow_id'];
+		$type = $instance['type'];
+		$width = $instance['width'];
+		$height = $instance['height'];
+		$colorbox = $instance['colorbox'];
+		$html = "";
+		$content = get_post($id);
+		$slideshow = $content->post_content;
+		$slideshow_exploded = explode("SL1D3RLYS3C43T", $slideshow);
+
+		include("output.php");
+
+		echo $output . $after_widget;
+	}
+
+	function update( $new_instance, $old_instance ) {
+		$instance = $old_instance;
+		$instance['title'] = strip_tags($new_instance['title']);
+		$instance['type'] = strip_tags($new_instance['type']);
+		$instance['width'] = strip_tags($new_instance['width']);
+		$instance['height'] = strip_tags($new_instance['height']);
+		$instance['colorbox'] = strip_tags($new_instance['colorbox']);
+		$instance['slideshow_id'] = strip_tags($new_instance['slideshow_id']);
+		return $instance;
+	}
+
+	function form($instance) {
+			$instance = wp_parse_args( (array) $instance, array( 'title' => '', 'slideshow_id' => '', 'type' => '' ) );
+			$title = strip_tags($instance['title']);
+			$width = strip_tags($instance['width']);
+			$height = strip_tags($instance['height']);
+			$colorbox = strip_tags($instance['colorbox']);
+			$slideshow_id = strip_tags($instance['slideshow_id']);
+			$type = strip_tags($instance['type']);
+	?>
+				<p><label for="<?php echo $this->get_field_id('title'); ?>">Title: <input class="widefat" id="<?php echo $this->get_field_id('title'); ?>" name="<?php echo $this->get_field_name('title'); ?>" type="text" value="<?php echo attribute_escape($title); ?>" /></label></p>
+				
+				<p>
+					<label for="<?php echo $this->get_field_id('slideshow_id'); ?>">
+						Slideshow: 
+						<select class="widefat" id="<?php echo $this->get_field_id('slideshow_id'); ?>" name="<?php echo $this->get_field_name('slideshow_id'); ?>">
+							
+							
+							<?php query_posts(array('post_type'=>'slideshow')); ?>
+
+							<?php
+								if (have_posts()) : while (have_posts()) : the_post();
+							?>
+
+								<option value="<?php echo get_the_ID(); ?>" <?php if (attribute_escape($slideshow_id) == get_the_ID()) { echo "selected='selected'"; } ?>><?php the_title() ?></option>
+
+							<?php
+								endwhile;
+								endif;
+							?>
+							
+						</select>
+					</label>
+				</p>
+				
+				<p>
+					<label for="<?php echo $this->get_field_id('type'); ?>">
+						Type: 
+						<select class="widefat" id="<?php echo $this->get_field_id('type'); ?>" name="<?php echo $this->get_field_name('type'); ?>">
+							<option value="slideshow" <?php if (attribute_escape($type) == "slideshow") { echo "selected='selected'"; } ?>>Slideshow (1 Big Rotating Image)</option>
+							<option value="gallery" <?php if (attribute_escape($type) == "gallery") { echo "selected='selected'"; } ?>>Gallery (Grid of Images)</option>
+						</select>
+					</label>
+				</p>
+				
+				<p><label for="<?php echo $this->get_field_id('width'); ?>">Width (if slideshow): <input class="widefat" id="<?php echo $this->get_field_id('width'); ?>" name="<?php echo $this->get_field_name('width'); ?>" type="text" value="<?php echo attribute_escape($width); ?>" /></label></p>
+				
+				<p><label for="<?php echo $this->get_field_id('height'); ?>">Height (if slideshow): <input class="widefat" id="<?php echo $this->get_field_id('height'); ?>" name="<?php echo $this->get_field_name('height'); ?>" type="text" value="<?php echo attribute_escape($height); ?>" /></label></p>
+				
+				<p><label for="<?php echo $this->get_field_id('colorbox'); ?>">Colorbox (<i>"true" or "false"</i>. If true, all links will open in a popover dialog): <input class="widefat" id="<?php echo $this->get_field_id('colorbox'); ?>" name="<?php echo $this->get_field_name('colorbox'); ?>" type="text" value="<?php echo attribute_escape($colorbox); ?>" /></label></p>
+	<?php
+		}
+}
+
+function sliderly_register_widgets() {
+	register_widget( 'SliderlyWidget' );
+}
+
+add_action( 'widgets_init', 'sliderly_register_widgets' );
+
+?>
