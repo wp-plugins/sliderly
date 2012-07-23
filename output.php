@@ -53,15 +53,11 @@
 		</div>";
 	}
 	
-	if ($css_set != "true")
+	if ($files_set != "true")
 	{
 		include("css.php");
-		$css_set = "true";
-	}
-	
-	if ($type == "slideshow")
-	{
 		include("js.php");
+		$files_set = "true";
 	}
 	
 	$output = "
