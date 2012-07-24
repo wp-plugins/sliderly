@@ -2,7 +2,7 @@
 /*
 Plugin Name: Sliderly
 Description: Awesomest slider plugin
-Version: 1.0.3
+Version: 1.0.8
 Author: Dallas Read
 Author URI: http://www.DallasRead.com
 License: GPL2
@@ -283,7 +283,7 @@ function sliderly_options() {
 <div class="wrap">
 	<div id="icon-options-general" class="icon32"><br></div>
 	<h2>Sliderly</h2>
-	<p>Copy the short code in the dark bar (below) and paste it where you want the gallery to appear on your page. Or use the Sliderly widget.</p>
+	<p>Drag and Drop your images to reorder. Copy the short code in the dark bar (below) and paste it on one of your pages. Or use the Sliderly widget.</p>
 	
 	<div id="sliderly_wrapper">
 
@@ -348,6 +348,8 @@ include("widget.php");
 include("shortcode.php");
 
 function create_slideshows() {
+	wp_enqueue_script('jquery');
+	
   $labels = array(
     'name' => _x('Sliderlies', 'post type general name'),
     'singular_name' => _x('Sliderly', 'post type singular name'),
