@@ -6,6 +6,8 @@
 <script type='text/javascript' src='<?php echo $url; ?>/colorbox/jquery.colorbox-min.js'></script>
 
 <script type="text/javascript">
+	var $ = jQuery.noConflict();
+	
 	$(document).ready(function(){
 		$(".colorbox").colorbox({
 			rel: 'colorbox'
