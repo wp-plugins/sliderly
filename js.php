@@ -11,12 +11,18 @@
 			rel: 'colorbox'
 		});
 		
-		$('.sliderly-slideshow').slides({
-			preload: true,
-			preloadImage: '<?php echo $url; ?>/slides/img/loading.gif',
-			play: 2500,
-			pause: 1000,
-			hoverPause: true
-		});
+		$('.sliderly-slideshow').each(function(){
+				if (!$(this).hasClass("set"))
+				{
+					$('.sliderly-slideshow').slides({
+						preload: true,
+						preloadImage: '<?php echo $url; ?>/slides/img/loading.gif',
+						play: 2500,
+						pause: 1000,
+						hoverPause: true
+					});
+					$(".sliderly-slideshow").addClass("set");
+				}
+			});
 	});
 </script>
