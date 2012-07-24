@@ -32,8 +32,16 @@
 			$html .= "<a href='" . $href . "'>";
 		}
 
-		$html .= "
-				<img src='" . $src . "' alt='" . $title . "' data-desc='" . $desc . "' style='width: " . $width . "px; height: " . $height . "px; '>";
+		if ($type == "slideshow")
+		{
+			$html .= "
+					<img src='" . $src . "' alt='" . $title . "' data-desc='" . $desc . "' style='width: " . $width . "px; height: " . $height . "px; ' />";
+		}
+		else
+		{
+			$html .= "
+					<img src='" . $src . "' alt='" . $title . "' data-desc='" . $desc . "' />";
+		}
 		
 		if ($type == "slideshow")
 		{
@@ -44,7 +52,18 @@
 					</div>";
 		}
 
-		if (($href != "" && $href != "http://Link to Webpage") || ($colorbox == "true" && $type == "gallery"))
+		if ($colorbox == "true")
+		{
+			if ($href != "")
+			{
+				$html .= "</a>";
+			}
+			else
+			{
+				$html .= "</a>";
+			}
+		}
+		else if ($href != "")
 		{
 			$html .= "</a>";
 		}
@@ -53,15 +72,11 @@
 		</div>";
 	}
 	
-	if ($css_set != "true")
+	if ($files_set != "true")
 	{
 		include("css.php");
-		$css_set = "true";
-	}
-	
-	if ($type == "slideshow")
-	{
 		include("js.php");
+		$files_set = "true";
 	}
 	
 	$output = "
