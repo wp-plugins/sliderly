@@ -52,7 +52,18 @@
 					</div>";
 		}
 
-		if (($href != "" && $href != "http://Link to Webpage") || ($colorbox == "true" && $type == "gallery"))
+		if ($colorbox == "true")
+		{
+			if ($href != "")
+			{
+				$html .= "</a>";
+			}
+			else
+			{
+				$html .= "</a>";
+			}
+		}
+		else if ($href != "")
 		{
 			$html .= "</a>";
 		}
