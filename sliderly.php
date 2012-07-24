@@ -2,7 +2,7 @@
 /*
 Plugin Name: Sliderly
 Description: Awesomest slider plugin
-Version: 1.0.3
+Version: 1.0.7
 Author: Dallas Read
 Author URI: http://www.DallasRead.com
 License: GPL2
