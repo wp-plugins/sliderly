@@ -6,7 +6,8 @@ function sliderly_shortcode( $atts ) {
 		'type' => 'gallery',
 		'width' => '950',
 		'height' => '380',
-		'colorbox' => 'false'
+		'colorbox' => 'false',
+		'controls' => 'centre'
 	), $atts ) );
 	
 	$html = "";
