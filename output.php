@@ -96,7 +96,7 @@
 	}
 	
 	$output = "
-			<div class='sliderly-$type'>
+			<div class='sliderly-$type controls-$controls'>
 				<div class='slides_container'>"
 					 . $html . 
 				"</div>";

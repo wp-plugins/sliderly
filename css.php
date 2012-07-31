@@ -75,9 +75,30 @@
 		padding: 15px;
 	}
 	
-	.pagination {
-		padding-top: 20px;
-		margin: 0 0 -48px -40px;
+	.sliderly-slideshow {
+		position: relative;
+	}
+	
+	.sliderly-slideshow.controls-right, .sliderly-slideshow.controls-left {
+		margin-bottom: -4px;
+	}
+	
+	.sliderly-slideshow.controls-right .pagination {
+		position: absolute;
+		right: 3px;
+		margin-top: -33px;
+		z-index: 999999;
+	}
+	
+	.sliderly-slideshow.controls-left .pagination {
+		position: absolute;
+		left: -33px;
+		margin-top: -33px;
+		z-index: 999999;
+	}
+	
+	.sliderly-slideshow.controls-centre .pagination {
+		margin: 8px 0 10px -40px;
 		width: 100%;
 		text-align: center;
 		list-style: none;

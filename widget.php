@@ -18,6 +18,7 @@ class SliderlyWidget extends WP_Widget {
 		$width = $instance['width'];
 		$height = $instance['height'];
 		$colorbox = $instance['colorbox'];
+		$controls = $instance['controls'];
 		$html = "";
 		$content = get_post($id);
 		$slideshow = $content->post_content;
@@ -35,6 +36,7 @@ class SliderlyWidget extends WP_Widget {
 		$instance['width'] = strip_tags($new_instance['width']);
 		$instance['height'] = strip_tags($new_instance['height']);
 		$instance['colorbox'] = strip_tags($new_instance['colorbox']);
+		$instance['controls'] = strip_tags($new_instance['controls']);
 		$instance['slideshow_id'] = strip_tags($new_instance['slideshow_id']);
 		return $instance;
 	}
@@ -45,6 +47,7 @@ class SliderlyWidget extends WP_Widget {
 			$width = strip_tags($instance['width']);
 			$height = strip_tags($instance['height']);
 			$colorbox = strip_tags($instance['colorbox']);
+			$controls = strip_tags($instance['controls']);
 			$slideshow_id = strip_tags($instance['slideshow_id']);
 			$type = strip_tags($instance['type']);
 	?>
@@ -86,6 +89,17 @@ class SliderlyWidget extends WP_Widget {
 				<p><label for="<?php echo $this->get_field_id('width'); ?>">Width (if slideshow): <input class="widefat" id="<?php echo $this->get_field_id('width'); ?>" name="<?php echo $this->get_field_name('width'); ?>" type="text" value="<?php echo attribute_escape($width); ?>" /></label></p>
 				
 				<p><label for="<?php echo $this->get_field_id('height'); ?>">Height (if slideshow): <input class="widefat" id="<?php echo $this->get_field_id('height'); ?>" name="<?php echo $this->get_field_name('height'); ?>" type="text" value="<?php echo attribute_escape($height); ?>" /></label></p>
+					
+				<p>
+					<label for="<?php echo $this->get_field_id('controls'); ?>">
+						Controls Position (if slideshow): 
+						<select class="widefat" id="<?php echo $this->get_field_id('controls'); ?>" name="<?php echo $this->get_field_name('controls'); ?>">
+							<option value="left" <?php if (attribute_escape($controls) == "left") { echo "selected='selected'"; } ?>>Left</option>
+							<option value="centre" <?php if (attribute_escape($controls) == "centre") { echo "selected='selected'"; } ?>>Centred</option>
+							<option value="right" <?php if (attribute_escape($controls) == "right") { echo "selected='selected'"; } ?>>Right</option>
+						</select>
+					</label>
+				</p>
 				
 				<p><label for="<?php echo $this->get_field_id('colorbox'); ?>">Colorbox (<i>"true" or "false"</i>. If true, all links will open in a popover dialog): <input class="widefat" id="<?php echo $this->get_field_id('colorbox'); ?>" name="<?php echo $this->get_field_name('colorbox'); ?>" type="text" value="<?php echo attribute_escape($colorbox); ?>" /></label></p>
 	<?php
