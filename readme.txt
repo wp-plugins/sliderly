@@ -56,6 +56,9 @@ In the back end of things, it creates a custom post type called `slideshow` and 
 
 == Changelog ==
 
+= 1.0.13 =
+Sliderly plays better with other plugins now.
+
 = 1.0.12 =
 Support for moving the slideshow controls.
 
