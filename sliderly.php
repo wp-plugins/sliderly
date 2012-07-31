@@ -136,8 +136,15 @@ function sliderly_options() {
 ?>
 
 <script type="text/javascript">
-	var $ = jQuery.noConflict();
-	$(function(){
+	jQuery(function($){
+		$(window).resize(function(){
+			var wpadminbar_height = $("#wpadminbar").height();
+			var footer_height = $("#footer").height();
+			var window_height = $(window).height();
+			
+			$("#sliderly_nav").height( window_height - wpadminbar_height + footer_height - 180 )
+		});
+		
 		$(".new_slideshow input").click(function(){
 			$(".form_wrapper").show()
 			$(".new_slideshow").hide()
@@ -265,20 +272,8 @@ function sliderly_options() {
 			}
 		});
 		
-		$.fn.resizer();
-		
-		$(window).resize(function(){
-			$.fn.resizer();
-		});
+		$(window).resize()
 	});
-	
-	$.fn.resizer = function() {
-		var wpadminbar_height = $("#wpadminbar").height();
-		var footer_height = $("#footer").height();
-		var window_height = $(window).height();
-
-		$("#sliderly_nav").height( window_height - wpadminbar_height + footer_height - 180 )
-	}
 </script>
 
 <div class="wrap">
