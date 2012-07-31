@@ -49,7 +49,7 @@
 					<img src='" . $src . "' alt='" . $title . "' data-desc='" . $desc . "' />";
 		}
 		
-		if ($type == "slideshow" && $title != "" && $desc != "")
+		if ($type == "slideshow" && ($title != "" || $desc != ""))
 		{
 			$html .= "
 					<div class='caption' style='bottom: 5px; '>";
@@ -99,7 +99,13 @@
 			<div class='sliderly-$type'>
 				<div class='slides_container'>"
 					 . $html . 
-				"</div>
-			</div>";
+				"</div>";
+
+	if ($type == "gallery")
+	{
+		$output .= "<div style='clear: both; '></div>";
+	}
+
+	$output .= "</div>";
 
 ?>
