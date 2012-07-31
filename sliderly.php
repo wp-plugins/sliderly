@@ -2,7 +2,7 @@
 /*
 Plugin Name: Sliderly
 Description: Awesomest slider plugin
-Version: 1.0.9
+Version: 1.0.11
 Author: Dallas Read
 Author URI: http://www.DallasRead.com
 License: GPL2
@@ -191,12 +191,13 @@ function sliderly_options() {
 		
 		$(".sliderly_menu_link:first").click();
 		
-		$("#sliderly_admin_gallery").disableSelection();
+		$("#sliderly_admin_gallery img").disableSelection();
+		
 		$("#sliderly_admin_gallery").sortable({
 			forcePlaceholdersize: true
 		});
 		
-		$("#sliderly_admin_gallery").bind( "sortupdate", function(event, ui) {
+		$("#sliderly_admin_gallery").bind("sortupdate", function(event, ui) {
 			var id = $(this).attr("data-id")
 			var html = [];
 			

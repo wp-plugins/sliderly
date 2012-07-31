@@ -3,7 +3,7 @@ Contributors: dallas22ca
 Tags: slider, easy slider, easiest slider, simple slider, ajax
 Requires at least: 3.4.1
 Tested up to: 3.4.1
-Stable tag: 1.0.9
+Stable tag: 1.0.11
 License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -54,6 +54,12 @@ In the back end of things, it creates a custom post type called `slideshow` and 
 1. The drag-and-drop, ajax-ified management interface.
 
 == Changelog ==
+
+= 1.0.11 =
+Make the widget extend to surround gallery. Backend drag and drop bug fix (being able to edit description, title, and link).
+
+= 1.0.10 =
+A few more if statements regarding output (declaring width and height only if present, caption and title only if present).
 
 = 1.0.9 =
 More silly changes regarding colorbox.

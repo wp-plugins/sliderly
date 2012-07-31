@@ -34,8 +34,14 @@
 
 		if ($type == "slideshow")
 		{
+			
+			if ($width != "" && $height != "")
+			{
+				$width_and_height = " style='width: " . $width . "px; height: " . $height . "px; '";
+			}
+			
 			$html .= "
-					<img src='" . $src . "' alt='" . $title . "' data-desc='" . $desc . "' style='width: " . $width . "px; height: " . $height . "px; ' />";
+					<img src='" . $src . "' alt='" . $title . "' data-desc='" . $desc . "'" . $width_and_height . " />";
 		}
 		else
 		{
@@ -43,12 +49,22 @@
 					<img src='" . $src . "' alt='" . $title . "' data-desc='" . $desc . "' />";
 		}
 		
-		if ($type == "slideshow")
+		if ($type == "slideshow" && ($title != "" || $desc != ""))
 		{
 			$html .= "
-					<div class='caption' style='bottom: 5px; '>
-						<h2>$title</h2>
-						<p>$desc</p>
+					<div class='caption' style='bottom: 5px; '>";
+					
+			if ($title != "")
+			{
+				$html .= "<h2>$title</h2>";
+			}
+			
+			if ($desc != "")
+			{
+				$html .= "<p>$desc</p>";
+			}
+
+			$html .= "
 					</div>";
 		}
 
@@ -83,7 +99,13 @@
 			<div class='sliderly-$type'>
 				<div class='slides_container'>"
 					 . $html . 
-				"</div>
-			</div>";
+				"</div>";
+
+	if ($type == "gallery")
+	{
+		$output .= "<div style='clear: both; '></div>";
+	}
+
+	$output .= "</div>";
 
 ?>
