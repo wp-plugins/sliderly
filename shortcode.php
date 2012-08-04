@@ -7,7 +7,8 @@ function sliderly_shortcode( $atts ) {
 		'width' => '950',
 		'height' => '380',
 		'colorbox' => 'false',
-		'controls' => 'centre'
+		'controls' => 'centre',
+		'grid' => '3'
 	), $atts ) );
 	
 	$html = "";
