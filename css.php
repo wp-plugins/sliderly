@@ -28,6 +28,14 @@
 		float: left;
 	}
 	
+	.sliderly-featuredimg .slide {
+		display: none;
+	}
+	
+	.sliderly-featuredimg .slide:first-child {
+		display: inline-block;
+	}
+	
 	.sliderly-gallery .slide:nth-child(odd) {
 		padding: 3% 3% 3% 0%;
 	}
@@ -65,6 +73,20 @@
 	
 	.slide {
 		position: relative;
+	}
+	
+	.sliderly-gallery .sliderly-title {
+		display: none;
+	}
+	
+	.sliderly-slideshow .sliderly-title {
+		display: none;
+	}
+	
+	.sliderly-featuredimg .sliderly-title {
+		margin: 0;
+		width: 100%;
+		margin-bottom: -20px;
 	}
 	
 	.caption {

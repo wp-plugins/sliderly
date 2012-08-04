@@ -13,6 +13,7 @@ function sliderly_shortcode( $atts ) {
 	$html = "";
 	$content = get_post($id);
 	$slideshow = $content->post_content;
+	$slideshow_title = $content->post_title;
 	$slideshow_exploded = explode("SL1D3RLYS3C43T", $slideshow);
 	
 	include("output.php");
