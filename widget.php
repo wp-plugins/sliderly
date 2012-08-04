@@ -22,6 +22,7 @@ class SliderlyWidget extends WP_Widget {
 		$html = "";
 		$content = get_post($id);
 		$slideshow = $content->post_content;
+		$slideshow_title = $content->post_title;
 		$slideshow_exploded = explode("SL1D3RLYS3C43T", $slideshow);
 
 		include("output.php");
@@ -82,6 +83,7 @@ class SliderlyWidget extends WP_Widget {
 						<select class="widefat" id="<?php echo $this->get_field_id('type'); ?>" name="<?php echo $this->get_field_name('type'); ?>">
 							<option value="slideshow" <?php if (attribute_escape($type) == "slideshow") { echo "selected='selected'"; } ?>>Slideshow (1 Big Rotating Image)</option>
 							<option value="gallery" <?php if (attribute_escape($type) == "gallery") { echo "selected='selected'"; } ?>>Gallery (Grid of Images)</option>
+							<option value="featuredimg" <?php if (attribute_escape($type) == "featuredimg") { echo "selected='selected'"; } ?>>Feature Image (First Image - Link Opens Slideshow)</option>
 						</select>
 					</label>
 				</p>

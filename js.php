@@ -10,7 +10,9 @@
 	
 	$(document).ready(function(){
 		$(".colorbox").colorbox({
-			rel: 'colorbox'
+			rel: 'colorbox',
+			maxHeight: '90%',
+			maxWidth: '90%'
 		});
 		
 		$('.sliderly-slideshow').each(function(){

@@ -3,7 +3,7 @@ Contributors: dallas22ca
 Tags: slider, easy slider, easiest slider, simple slider, ajax
 Requires at least: 3.4.1
 Tested up to: 3.4.1
-Stable tag: 1.0.13
+Stable tag: 1.0.14
 License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -17,7 +17,7 @@ Sliderly is my opinion of how galleries should be managed, whether they're for a
 
 **How easy is it? Click on the Slideshows tab, upload your images via the core WP Media Gallery, and Drag-and-Drop your images to re-order them. Show them on your site with a shortcode or a widget.**
 
-In the front end of things, I chose to go with [Slides](http://slidesjs.com) and [Colorbox](http://www.jacklmoore.com/colorbox) because they're awesome and flexible.
+In the front end of things, I chose to go with [Slides](http://slidesjs.com) and [Colorbox](http://www.jacklmoore.com/colorbox) because they're awesome, flexible, and reliable.
 
 It comes with:
 
@@ -25,7 +25,7 @@ It comes with:
 * Simple shortcode for `slideshow` or `gallery`.
 * `[sliderly id=123 type=gallery]`
 * Slideshows must declare their width and height `[sliderly id=123 type=slideshow width=500 height=100]`.
-* To force links to open in colorbox, set colorbox to true `[sliderly id=123 type=gallery colorbox=true]`.
+* To force links to open in colorbox (a pop-off-the-page image viewer), set colorbox to true `[sliderly id=123 type=gallery colorbox=true]`.
 * Widget with intuitive interface for selecting gallery and type.
 * Hard-codable into a template via `<?php echo do_shortcode('[sliderly id=88 type=slideshow]'); ?>`.
 
@@ -39,10 +39,11 @@ In the back end of things, it creates a custom post type called `slideshow` and 
 
 == Frequently Asked Questions ==
 
-= What are the different `type`s I can use for the shortcode? =
+= What are the different `type` I can use for the shortcode? =
 
 * `gallery` - displays a grid of the images in two columns.
 * `slideshow` - displays a simple, one-image-at-a-time slideshow with navigation controls.
+* `featuredimg` - displays the first image of a gallery, if colorbox=true, clicking on it will show a slideshow of the images.
 
 = What are the other features in the shortcode? =
 
@@ -55,6 +56,9 @@ In the back end of things, it creates a custom post type called `slideshow` and 
 1. The drag-and-drop, ajax-ified management interface.
 
 == Changelog ==
+
+= 1.0.14 =
+Added type of "Featured Image" for widget and shortcode (`[sliderly type=featuredimg]`). This will let you just add just the first image of a gallery to the page. If colorbox is turned on, it will show a slideshow of all the images in that particular gallery.
 
 = 1.0.13 =
 Sliderly plays better with other plugins now.

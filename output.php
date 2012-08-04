@@ -97,6 +97,7 @@
 	
 	$output = "
 			<div class='sliderly-$type controls-$controls'>
+				<p class='sliderly-title'>$slideshow_title</p>
 				<div class='slides_container'>"
 					 . $html . 
 				"</div>";
