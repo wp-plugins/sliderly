@@ -145,6 +145,10 @@
 		list-style: none;
 		z-index: 99999;
 	}
+	
+	.sliderly-slideshow.controls-hide .pagination {
+		display: none;
+	}
 
 	.pagination li {
 		display: inline;

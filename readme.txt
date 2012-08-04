@@ -3,7 +3,7 @@ Contributors: dallas22ca
 Tags: slider, easy slider, easiest slider, simple slider, ajax
 Requires at least: 3.4.1
 Tested up to: 3.4.1
-Stable tag: 1.0.15
+Stable tag: 1.0.16
 License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -49,7 +49,7 @@ In the back end of things, it creates a custom post type called `slideshow` and 
 
 * `colorbox` - links open in the glorious colorbox (inline dialog box), defaults to *false*
 * `width` and `height` - must be declared for the slideshow to display properly
-* `controls` - where the slideshow controls will be positioned (left, centre, right), defaults to *centre*
+* `controls` - where the slideshow controls will be positioned (left, centre, right, hide), defaults to *centre*
 * `grid` - sets how many images wide the gallery should be, defaults to *3*
 
 == Screenshots ==
@@ -57,6 +57,9 @@ In the back end of things, it creates a custom post type called `slideshow` and 
 1. The drag-and-drop, ajax-ified management interface.
 
 == Changelog ==
+
+= 1.0.16 =
+Added support to hide slideshow controls with `[sliderly controls=hide]`.
 
 = 1.0.15 =
 Added grid (`[sliderly type=gallery grid=3]`) for widget and shortcode. This lets you choose how many columns of images you want to see.
