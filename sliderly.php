@@ -2,7 +2,7 @@
 /*
 Plugin Name: Sliderly
 Description: Awesomest slider plugin
-Version: 1.0.14
+Version: 1.0.15
 Author: Dallas Read
 Author URI: http://www.DallasRead.com
 License: GPL2
@@ -278,7 +278,7 @@ function sliderly_options() {
 
 <div class="wrap">
 	<div id="icon-options-general" class="icon32"><br></div>
-	<h2>Sliderly</h2>
+	<h2 style="display: inline-block; ">Sliderly <iframe src="//www.facebook.com/plugins/like.php?href=https%3A%2F%2Fgithub.com%2Fdallas22ca%2FSliderly&amp;send=false&amp;layout=button_count&amp;width=130&amp;show_faces=true&amp;action=recommend&amp;colorscheme=light&amp;font&amp;height=21&amp;appId=341097969303814" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:130px; height:21px; margin-left: 15px; display: inline-block; " allowTransparency="true"></iframe></h2>
 	<p>Drag and Drop your images to reorder. Copy the short code in the dark bar (below) and paste it on one of your pages. Or use the Sliderly widget.</p>
 	
 	<div id="sliderly_wrapper">

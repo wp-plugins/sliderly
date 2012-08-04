@@ -19,6 +19,7 @@ class SliderlyWidget extends WP_Widget {
 		$height = $instance['height'];
 		$colorbox = $instance['colorbox'];
 		$controls = $instance['controls'];
+		$grid = $instance['grid'];
 		$html = "";
 		$content = get_post($id);
 		$slideshow = $content->post_content;
@@ -38,6 +39,7 @@ class SliderlyWidget extends WP_Widget {
 		$instance['height'] = strip_tags($new_instance['height']);
 		$instance['colorbox'] = strip_tags($new_instance['colorbox']);
 		$instance['controls'] = strip_tags($new_instance['controls']);
+		$instance['grid'] = strip_tags($new_instance['grid']);
 		$instance['slideshow_id'] = strip_tags($new_instance['slideshow_id']);
 		return $instance;
 	}
@@ -49,6 +51,7 @@ class SliderlyWidget extends WP_Widget {
 			$height = strip_tags($instance['height']);
 			$colorbox = strip_tags($instance['colorbox']);
 			$controls = strip_tags($instance['controls']);
+			$grid = strip_tags($instance['grid']);
 			$slideshow_id = strip_tags($instance['slideshow_id']);
 			$type = strip_tags($instance['type']);
 	?>
@@ -102,6 +105,8 @@ class SliderlyWidget extends WP_Widget {
 						</select>
 					</label>
 				</p>
+				
+				<p><label for="<?php echo $this->get_field_id('grid'); ?>">How many images wide? (if gallery): <input class="widefat" id="<?php echo $this->get_field_id('grid'); ?>" name="<?php echo $this->get_field_name('grid'); ?>" type="text" value="<?php echo attribute_escape($grid); ?>" /></label></p>
 				
 				<p><label for="<?php echo $this->get_field_id('colorbox'); ?>">Colorbox (<i>"true" or "false"</i>. If true, all links will open in a popover dialog): <input class="widefat" id="<?php echo $this->get_field_id('colorbox'); ?>" name="<?php echo $this->get_field_name('colorbox'); ?>" type="text" value="<?php echo attribute_escape($colorbox); ?>" /></label></p>
 	<?php
