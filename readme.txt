@@ -3,7 +3,7 @@ Contributors: dallas22ca
 Tags: slider, easy slider, easiest slider, simple slider, ajax
 Requires at least: 3.4.1
 Tested up to: 3.4.1
-Stable tag: 1.0.16
+Stable tag: 1.0.17
 License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -51,12 +51,17 @@ In the back end of things, it creates a custom post type called `slideshow` and 
 * `width` and `height` - must be declared for the slideshow to display properly
 * `controls` - where the slideshow controls will be positioned (left, centre, right, hide), defaults to *centre*
 * `grid` - sets how many images wide the gallery should be, defaults to *3*
+* `effect` - sets slideshow transition (slide, fade), defaults to *fade*
+* `duration` - sets milliseconds between slideshow slides, defaults to *2500*
 
 == Screenshots ==
 
 1. The drag-and-drop, ajax-ified management interface.
 
 == Changelog ==
+
+= 1.0.17 =
+Added support for HTML slides, fade transition for slideshows, and slideshow slide duration. Also added "How do I use Sliderly?" in the admin panel.
 
 = 1.0.16 =
 Added support to hide slideshow controls with `[sliderly controls=hide]`.

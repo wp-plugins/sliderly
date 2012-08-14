@@ -8,6 +8,8 @@ function sliderly_shortcode( $atts ) {
 		'height' => '380',
 		'colorbox' => 'false',
 		'controls' => 'centre',
+		'effect' => 'fade',
+		'duration' => '2500',
 		'grid' => '3'
 	), $atts ) );
 	

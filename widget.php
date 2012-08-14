@@ -20,6 +20,8 @@ class SliderlyWidget extends WP_Widget {
 		$colorbox = $instance['colorbox'];
 		$controls = $instance['controls'];
 		$grid = $instance['grid'];
+		$effect = $instance['effect'];
+		$duration = $instance['duration'];
 		$html = "";
 		$content = get_post($id);
 		$slideshow = $content->post_content;
@@ -40,6 +42,8 @@ class SliderlyWidget extends WP_Widget {
 		$instance['colorbox'] = strip_tags($new_instance['colorbox']);
 		$instance['controls'] = strip_tags($new_instance['controls']);
 		$instance['grid'] = strip_tags($new_instance['grid']);
+		$instance['effect'] = strip_tags($new_instance['effect']);
+		$instance['duration'] = strip_tags($new_instance['duration']);
 		$instance['slideshow_id'] = strip_tags($new_instance['slideshow_id']);
 		return $instance;
 	}
@@ -52,6 +56,8 @@ class SliderlyWidget extends WP_Widget {
 			$colorbox = strip_tags($instance['colorbox']);
 			$controls = strip_tags($instance['controls']);
 			$grid = strip_tags($instance['grid']);
+			$effect = strip_tags($instance['effect']);
+			$duration = strip_tags($instance['duration']);
 			$slideshow_id = strip_tags($instance['slideshow_id']);
 			$type = strip_tags($instance['type']);
 	?>
@@ -90,6 +96,18 @@ class SliderlyWidget extends WP_Widget {
 						</select>
 					</label>
 				</p>
+				
+				<p>
+					<label for="<?php echo $this->get_field_id('effect'); ?>">
+						Transition Effect (if slideshow): 
+						<select class="widefat" id="<?php echo $this->get_field_id('effect'); ?>" name="<?php echo $this->get_field_name('effect'); ?>">
+							<option value="fade" <?php if (attribute_escape($effect) == "fade") { echo "selected='selected'"; } ?>>Fade</option>
+							<option value="slide" <?php if (attribute_escape($effect) == "slide") { echo "selected='selected'"; } ?>>Slide</option>
+						</select>
+					</label>
+				</p>
+				
+				<p><label for="<?php echo $this->get_field_id('duration'); ?>">Duration (in milliseconds, if slideshow): <input class="widefat" id="<?php echo $this->get_field_id('duration'); ?>" name="<?php echo $this->get_field_name('duration'); ?>" type="text" value="<?php echo attribute_escape($duration); ?>" /></label></p>
 				
 				<p><label for="<?php echo $this->get_field_id('width'); ?>">Width (if slideshow): <input class="widefat" id="<?php echo $this->get_field_id('width'); ?>" name="<?php echo $this->get_field_name('width'); ?>" type="text" value="<?php echo attribute_escape($width); ?>" /></label></p>
 				

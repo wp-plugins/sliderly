@@ -21,9 +21,10 @@
 					$('.sliderly-slideshow').slides({
 						preload: true,
 						preloadImage: '<?php echo $url; ?>/slides/img/loading.gif',
-						play: 2500,
+						play: <?php echo $duration; ?>,
 						pause: 1000,
-						hoverPause: true
+						hoverPause: true,
+						effect: "<?php echo $effect; ?>"
 					});
 					$(".sliderly-slideshow").addClass("set");
 				}

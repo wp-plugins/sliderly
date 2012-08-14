@@ -7,81 +7,91 @@
 		$title = $slide_exploded[1];
 		$desc = $slide_exploded[2];
 		$href = $slide_exploded[3];
+		$slide_type = $slide_exploded[4];
+		
+		if ($type == "slideshow" && $width != "" && $height != "")
+		{
+			$width_and_height = " style='width: " . $width . "px; height: " . $height . "px; '";
+		}
 		
 		$html .= "
-			<div class='slide'>";
-
-		if ($colorbox == "true")
-		{
-			if ($desc != "")
-			{
-				$ddesc = " - " . $desc;
-			}
+			<div class='slide' " . $width_and_height . ">";
 			
-			if ($href != "")
-			{
-				$html .= "<a href='" . $href . "' class='colorbox' title=\"" . $title . $ddesc . "\">";
-			}
-			else
-			{
-				$html .= "<a href='" . $src . "' class='colorbox' title=\"" . $title . $ddesc . "\">";
-			}
-		}
-		else if ($href != "")
+		if ($slide_type == "html")
 		{
-			$html .= "<a href='" . $href . "'>";
-		}
-
-		if ($type == "slideshow")
-		{
-			
-			if ($width != "" && $height != "")
-			{
-				$width_and_height = " style='width: " . $width . "px; height: " . $height . "px; '";
-			}
-			
-			$html .= "
-					<img src='" . $src . "' alt='" . $title . "' data-desc='" . $desc . "'" . $width_and_height . " />";
+			$html .= $src;
 		}
 		else
 		{
-			$html .= "
-					<img src='" . $src . "' alt='" . $title . "' data-desc='" . $desc . "' />";
-		}
-		
-		if ($type == "slideshow" && ($title != "" || $desc != ""))
-		{
-			$html .= "
-					<div class='caption' style='bottom: 5px; '>";
-					
-			if ($title != "")
-			{
-				$html .= "<h2>$title</h2>";
-			}
 			
-			if ($desc != "")
+			if ($colorbox == "true")
 			{
-				$html .= "<p>$desc</p>";
+				if ($desc != "")
+				{
+					$ddesc = " - " . $desc;
+				}
+
+				if ($href != "")
+				{
+					$html .= "<a href='" . $href . "' class='colorbox' title=\"" . $title . $ddesc . "\">";
+				}
+				else
+				{
+					$html .= "<a href='" . $src . "' class='colorbox' title=\"" . $title . $ddesc . "\">";
+				}
+			}
+			else if ($href != "")
+			{
+				$html .= "<a href='" . $href . "'>";
 			}
 
-			$html .= "
-					</div>";
-		}
-
-		if ($colorbox == "true")
-		{
-			if ($href != "")
+			if ($type == "slideshow")
 			{
-				$html .= "</a>";
+
+				$html .= "
+						<img src='" . $src . "' alt='" . $title . "' data-desc='" . $desc . "'" . $width_and_height . " />";
 			}
 			else
 			{
+				$html .= "
+						<img src='" . $src . "' alt='" . $title . "' data-desc='" . $desc . "' />";
+			}
+
+			if ($type == "slideshow" && ($title != "" || $desc != ""))
+			{
+				$html .= "
+						<div class='caption' style='bottom: 5px; '>";
+
+				if ($title != "")
+				{
+					$html .= "<h2>$title</h2>";
+				}
+
+				if ($desc != "")
+				{
+					$html .= "<p>$desc</p>";
+				}
+
+				$html .= "
+						</div>";
+			}
+
+			if ($colorbox == "true")
+			{
+				if ($href != "")
+				{
+					$html .= "</a>";
+				}
+				else
+				{
+					$html .= "</a>";
+				}
+			}
+			else if ($href != "")
+			{
 				$html .= "</a>";
 			}
-		}
-		else if ($href != "")
-		{
-			$html .= "</a>";
+			
 		}
 
 		$html .= "

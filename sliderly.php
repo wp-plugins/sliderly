@@ -2,7 +2,7 @@
 /*
 Plugin Name: Sliderly
 Description: Awesomest slider plugin
-Version: 1.0.16
+Version: 1.0.17
 Author: Dallas Read
 Author URI: http://www.DallasRead.com
 License: GPL2
@@ -73,15 +73,29 @@ function sliderly_options() {
 				$title = stripslashes($slide_exploded[1]);
 				$desc = $slide_exploded[2];
 				$href = $slide_exploded[3];
-				$output .= "<li>
-								<img src='" . get_option('siteurl') . "/wp-content/plugins/" . basename(dirname(__FILE__)) . "/images/trash.png' class='trash' />
-								<img src='" . $thumb . "' class='img' />
-								<div>
-									<input type='text' class='title' placeholder='Title' value=\"$title\" />
-									<textarea class='desc' placeholder='Description'>$desc</textarea>
-									<input type='text' class='href' placeholder='Link to Webpage' value=\"$href\" />
-								</div>
-						</li>";
+				$type = $slide_exploded[4];
+				
+				if ($type == "html")
+				{
+					$output .= "<li class='" . $type . "_li'>
+									<img src='" . get_option('siteurl') . "/wp-content/plugins/" . basename(dirname(__FILE__)) . "/images/trash.png' class='trash' />
+									<div>
+										<textarea class='html' placeholder='Enter HTML here...'>$src</textarea>
+									</div>
+							</li>";
+				}
+				else
+				{
+					$output .= "<li class='" . $type . "_li'>
+									<img src='" . get_option('siteurl') . "/wp-content/plugins/" . basename(dirname(__FILE__)) . "/images/trash.png' class='trash' />
+									<img src='" . $thumb . "' class='img' />
+									<div>
+										<input type='text' class='title' placeholder='Title' value=\"$title\" />
+										<textarea class='desc' placeholder='Description'>$desc</textarea>
+										<input type='text' class='href' placeholder='Link to Webpage' value=\"$href\" />
+									</div>
+							</li>";
+				}
 			}
 		}
 		
@@ -209,17 +223,25 @@ function sliderly_options() {
 			var html = [];
 			
 			$("#sliderly_admin_gallery li").each(function(){
-				var src = $(this).find("img:not(.trash)").attr("src")
-				var title = $(this).find(".title").val()
-				var desc = $(this).find(".desc").val()
-				var href = $(this).find(".href").val()
-				
-				if (href.indexOf("://") == -1 && href != "" && href != "Link to Webpage")
+				if ($(this).hasClass("html_li"))
 				{
-					href = "http://" + href;
+					var content = $(this).find(".html").val()
+					var info = [content, "", "", "", "html"];
 				}
-				
-				var info = [src, title, desc, href];
+				else
+				{
+					var src = $(this).find("img:not(.trash)").attr("src")
+					var title = $(this).find(".title").val()
+					var desc = $(this).find(".desc").val()
+					var href = $(this).find(".href").val()
+
+					if (href.indexOf("://") == -1 && href != "" && href != "Link to Webpage")
+					{
+						href = "http://" + href;
+					}
+
+					var info = [src, title, desc, href, "img"];
+				}
 				html.push(info.join("|02df|"))
 			})
 			
@@ -228,7 +250,7 @@ function sliderly_options() {
 			});
 		});
 		
-		$("#sliderly_admin_gallery .title, #sliderly_admin_gallery .desc, #sliderly_admin_gallery .href").live("blur", function(){
+		$("#sliderly_admin_gallery .title, #sliderly_admin_gallery .desc, #sliderly_admin_gallery .href, #sliderly_admin_gallery .html").live("blur", function(){
 			$("#sliderly_admin_gallery").trigger('sortupdate')
 		})
 		
@@ -248,7 +270,7 @@ function sliderly_options() {
 		window.send_to_editor = function(html) {
 			imgurl = jQuery('img', html).attr('src');
 			tb_remove()
-			$("<li>\
+			$("<li class='img_li'>\
 				<img src='<?php echo get_option('siteurl') . '/wp-content/plugins/' . basename(dirname(__FILE__)) . '/images/trash.png' ?>' class='trash'>\
 				<img src='" + imgurl + "' class='img' />\
 				<div>\
@@ -259,6 +281,16 @@ function sliderly_options() {
 			</li>").appendTo( $("#sliderly_admin_gallery") )
 			$("#sliderly_admin_gallery").trigger('sortupdate')
 		}
+		
+		$(".add_html").live("click", function(){
+			$("<li class='html_li'>\
+					<img src='<?php echo get_option('siteurl') . '/wp-content/plugins/' . basename(dirname(__FILE__)) . '/images/trash.png' ?>' class='trash'>\
+					<div>\
+						<textarea class='html' placeholder='Enter HTML here...'></textarea>\
+					</div>\
+				</li>").appendTo( $("#sliderly_admin_gallery") )
+			$("#sliderly_admin_gallery").trigger('sortupdate')
+		})
 		
 		$(".delete_sliderly").live("click", function(){
 			var id = $(this).attr("data-id")
@@ -272,6 +304,11 @@ function sliderly_options() {
 			}
 		});
 		
+		$(".show_how_to_use").live("click", function(){
+			$("#how_to_use").toggle()
+			return false;
+		});
+		
 		$(window).resize()
 	});
 </script>
@@ -279,7 +316,43 @@ function sliderly_options() {
 <div class="wrap">
 	<div id="icon-options-general" class="icon32"><br></div>
 	<h2 style="display: inline-block; ">Sliderly <iframe src="//www.facebook.com/plugins/like.php?href=https%3A%2F%2Fgithub.com%2Fdallas22ca%2FSliderly&amp;send=false&amp;layout=button_count&amp;width=130&amp;show_faces=true&amp;action=recommend&amp;colorscheme=light&amp;font&amp;height=21&amp;appId=341097969303814" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:130px; height:21px; margin-left: 15px; display: inline-block; " allowTransparency="true"></iframe></h2>
-	<p>Drag and Drop your images to reorder. Copy the short code in the dark bar (below) and paste it on one of your pages. Or use the Sliderly widget.</p>
+	<p>
+		<a href="#" class="show_how_to_use">How do I use Sliderly?</a>
+	</p>
+	
+	<div id="how_to_use">
+		<h3>How do I reorder my slides?</h3><br />
+		Simply click and drag the images around. Your changes will save automagically.<br /><br />
+		
+		<h3>How do I add a slideshow to a page?</h3><br />
+		Copy the short code (shown in the dark bar below this window) and paste it into your page!<br /><br />
+		
+		<h3>What options do I have?</h3><br />
+		You can add as many options to your shortcode as you'd like. There are three gallery types:<br /><br />
+		
+		<b>[sliderly type=gallery]</b> - displays a grid of the images, defaults to 2 columns (can be changed with <b>grid</b>).<br /><br />
+		<b>[sliderly type=slideshow]</b> - displays a simple, one-image-at-a-time slideshow with navigation controls.<br /><br />
+		<b>[sliderly type=featuredimg]</b> - displays the first image of a gallery, if colorbox=true, clicking on it will pop out a slideshow of all images.<br /><br />
+		
+		A few other options are:<br /><br />
+		<b>[sliderly colorbox=false]</b> - links open in the glorious colorbox (inline dialog box), defaults to <i>false</i>.<br /><br />
+		<b>[sliderly width=100 height=100]</b> - width and height must be declared for the slideshow to display properly.<br /><br />
+		<b>[sliderly controls=centre]</b> - where the slideshow controls will be positioned (left, centre, right, hide), defaults to <i>centre</i>.<br /><br />
+		<b>[sliderly grid=3]</b> - sets how many images wide the gallery should be, defaults to <i>3</i>.<br /><br />
+		<b>[sliderly effect=fade]</b> - sets how the slideshow images transition (slide, fade), defaults to <i>fade</i>.<br /><br />
+		<b>[sliderly duration=2500]</b> - sets how many milliseconds between slideshow slides, defaults to <i>2500</i>.<br /><br />
+		
+		<h3>How do I add a slideshow to a sidebar (widget area)?</h3><br />
+		You can add a slideshow or gallery to one of your widget areas by visiting your <a href="<?php echo admin_url("widgets.php") ?>">Widgets</a> page (found under appearance). Find the "Sliderly" widget and drag it into your sidebar. The Sliderly wizard will walk you through the display options (transition effects, slide duration, etc.).<br /><br />
+		
+		<h3>How do I add a slideshow to a custom template?</h3><br />
+		Add a PHP line that looks like this...<br />
+		echo do_shortcode('[sliderly id=XXX type=slideshow]');<br /><br />
+		
+		Thanks for using Sliderly!<br /><br />
+		
+		<a href="#" class="show_how_to_use">Close this window</a>.
+	</div>
 	
 	<div id="sliderly_wrapper">
 
@@ -320,6 +393,7 @@ function sliderly_options() {
 		<div id="sliderly_meta">
 			<p class="sliderly_shortcode">[sliderly id=<span class="sliderly_id"></span> type=slideshow width=500 height=100]</p>
 			<a href="<?php echo admin_url(); ?>/media-upload.php?TB_iframe=1&amp;width=640&amp;height=85" class="thickbox button-primary add_media" id="content-add_media" title="Add Media" onclick="return false;">Add Image</a>
+			<a href="#" class="button-primary add_html" id="content-add_html" title="Add HTML" onclick="return false;">Add HTML</a>
 			<a href="#" class="button-secondary delete_sliderly">Delete This Sliderly</a>
 		</div>
 	
