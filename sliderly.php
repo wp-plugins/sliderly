@@ -2,7 +2,10 @@
 /*
 Plugin Name: Sliderly
 Description: Awesomest slider plugin
-Version: 1.0.17
+Version: 1.0.18
+=======
+Version: 1.0.0
+>>>>>>> 00a7ce7dc2e0bfea269563d38aac60d0c9fb69a5
 Author: Dallas Read
 Author URI: http://www.DallasRead.com
 License: GPL2
@@ -315,7 +318,14 @@ function sliderly_options() {
 
 <div class="wrap">
 	<div id="icon-options-general" class="icon32"><br></div>
-	<h2 style="display: inline-block; ">Sliderly <iframe src="//www.facebook.com/plugins/like.php?href=https%3A%2F%2Fgithub.com%2Fdallas22ca%2FSliderly&amp;send=false&amp;layout=button_count&amp;width=130&amp;show_faces=true&amp;action=recommend&amp;colorscheme=light&amp;font&amp;height=21&amp;appId=341097969303814" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:130px; height:21px; margin-left: 15px; display: inline-block; " allowTransparency="true"></iframe></h2>
+	<h2 style="display: inline-block; ">Sliderly <iframe src="//www.facebook.com/plugins/like.php?href=https%3A%2F%2Fgithub.com%2Fdallas22ca%2FSliderly&amp;send=false&amp;layout=button_count&amp;width=130&amp;show_faces=true&amp;action=recommend&amp;colorscheme=light&amp;font&amp;height=21&amp;appId=341097969303814" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:130px; height:21px; margin-left: 15px; display: inline-block; " allowTransparency="true"></iframe>
+		<form action="https://www.paypal.com/cgi-bin/webscr" method="post" style="margin-left: 15px; display: inline-block; ">
+		<input type="hidden" name="cmd" value="_s-xclick">
+		<input type="hidden" name="hosted_button_id" value="QR2D7NP54XEQW">
+		<input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_SM.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+		<img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+		</form>
+	</h2>
 	<p>
 		<a href="#" class="show_how_to_use">How do I use Sliderly?</a>
 	</p>
@@ -325,7 +335,7 @@ function sliderly_options() {
 		Simply click and drag the images around. Your changes will save automagically.<br /><br />
 		
 		<h3>How do I add a slideshow to a page?</h3><br />
-		Copy the short code (shown in the dark bar below this window) and paste it into your page!<br /><br />
+		Copy the short code (shown in the dark bar) and paste it into your page!<br /><br />
 		
 		<h3>What options do I have?</h3><br />
 		You can add as many options to your shortcode as you'd like. There are three gallery types:<br /><br />

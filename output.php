@@ -1,5 +1,7 @@
 <?php
-
+	
+	$sc = 0;
+	
 	foreach ($slideshow_exploded as $slide)
 	{
 		$slide_exploded = explode("|02df|", $slide);
@@ -15,7 +17,7 @@
 		}
 		
 		$html .= "
-			<div class='slide' " . $width_and_height . ">";
+			<div class='slide' id='sliderly_" . $id . "_" . $sc . "' " . $width_and_height . ">";
 			
 		if ($slide_type == "html")
 		{
@@ -96,6 +98,8 @@
 
 		$html .= "
 		</div>";
+		
+		$sc += 1;
 	}
 	
 	if ($files_set != "true")
