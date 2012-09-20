@@ -1,0 +1,144 @@
+#sliderly_wrapper {
+	background: #eee;
+	width: 95%; 
+}
+
+#sliderly_nav {
+	float: left; 
+	margin: 0; 
+	width: 200px; 
+	background: url(../../../wp-admin/images/menu-shadow.png) top right repeat-y #ddd;
+	padding-top: 10px;
+}
+
+#sliderly_nav li {
+	margin: 0; 
+}
+
+#sliderly_nav a, #sliderly_nav .wrapper {
+	padding: 5px 10px;
+	display: block; 
+}
+
+#sliderly_nav .form_wrapper a {
+	display: inline !important;
+}
+
+.form_wrapper {
+	display: none;
+}
+
+#sliderly_nav a span {
+	font-weight: bold;
+	font-size: 1.2em; 
+}
+
+#sliderly_nav .selected {
+	background: url(../../../wp-admin/images/menu-shadow.png) top right repeat-y #fff;
+	border-top: 1px solid #ccc;
+	border-bottom: 1px solid #ccc;
+}
+
+#sliderly_admin_gallery {
+	margin: 0;
+	padding: 20px;
+	width: 75%;
+	min-height: 200px;
+	float: right;
+}
+
+#sliderly_admin_gallery li {
+	float: left;
+	width: 17%;
+	height: 230px;
+	text-align: center;
+	position: relative;
+	margin: 1%;
+	border: 1px solid #333;
+	background: #eee;
+}
+
+#sliderly_admin_gallery div {
+	position: absolute;
+	bottom: 0; 
+	margin-right: 2%;
+}
+
+#sliderly_admin_gallery div input, #sliderly_admin_gallery div textarea {
+	width: 100%;
+}
+
+
+#sliderly_admin_gallery .html {
+	height: 200px;
+}
+
+#sliderly_admin_gallery .trash {
+	top: 5px;
+	right: 5px;
+	cursor: pointer;
+	width: 20px;
+	position: absolute;
+}
+
+#sliderly_admin_gallery .img {
+	max-width: 100%;
+	max-height: 120px;
+}
+
+#sliderly_meta {
+	padding: 15px;
+	background: #333;
+	min-height: 1.5em;
+}
+.delete_sliderly {
+	float: right;
+}
+
+.sliderly_shortcode {
+	float: left;
+	margin: 0;
+	color: #fff;
+	padding-left: 15px;
+	font-size: 1.2em;
+}
+
+#how_to_use {
+	border: 8px solid #ddd;
+	padding: 25px;
+	position: absolute;
+	background: #fff;
+	width: 330px;
+	z-index: 9;
+	color: #111;
+	text-decoration: none;
+	border-radius: 4px;
+	margin-top: 12px;
+	height: 400px;
+	overflow: auto;
+	display: none;
+}
+
+#how_to_use b {
+	font-size: 1.1em;
+}
+
+#how_to_use h3 {
+	font-size: 1.7em;
+	line-height: 1.3em;
+	margin: 30px 0 0 0;
+}
+
+#how_to_use h3:first-child {
+	margin: 0;
+}
+
+.add_media {
+	float: right;
+	margin-left: 20px;
+}
+
+.add_html {
+	float: right;
+	margin-left: 20px;
+}
