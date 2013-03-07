@@ -1,11 +1,8 @@
 <?php
 /*
 Plugin Name: Sliderly
-Description: Awesomest slider plugin
-Version: 1.0.18
-=======
-Version: 1.0.0
->>>>>>> 00a7ce7dc2e0bfea269563d38aac60d0c9fb69a5
+Description: The Best Slider, Slideshow, and Gallery Plugin For Wordpress
+Version: 1.0.19
 Author: Dallas Read
 Author URI: http://www.DallasRead.com
 License: GPL2
@@ -31,6 +28,7 @@ function admin_register_head() {
     $url = $siteurl . '/wp-content/plugins/' . basename(dirname(__FILE__));
     echo "<link rel='stylesheet' type='text/css' href='$url/sliderly.css' />\n";
 		wp_enqueue_script(array("jquery-ui-core", "interface", "jquery-ui-widget", "jquery-ui-mouse", "wp-lists", "jquery-ui-sortable"));
+		wp_enqueue_media();
 }
 
 function register_mysettings() { // whitelist options
@@ -270,20 +268,60 @@ function sliderly_options() {
 			}
 		)
 		
-		window.send_to_editor = function(html) {
-			imgurl = jQuery('img', html).attr('src');
-			tb_remove()
-			$("<li class='img_li'>\
-				<img src='<?php echo get_option('siteurl') . '/wp-content/plugins/' . basename(dirname(__FILE__)) . '/images/trash.png' ?>' class='trash'>\
-				<img src='" + imgurl + "' class='img' />\
-				<div>\
-					<input type='text' placeholder='Title' class='title' />\
-					<textarea class='desc' placeholder='Description'></textarea>\
-					<input type='text' placeholder='Link to Webpage' class='href' />\
-				</div>\
-			</li>").appendTo( $("#sliderly_admin_gallery") )
-			$("#sliderly_admin_gallery").trigger('sortupdate')
-		}
+		var file_frame;
+		$('.add_media').live('click', function(event){
+			event.preventDefault();
+			
+			if ( file_frame ) {
+				file_frame.open();
+				return;
+			}
+ 
+			file_frame = wp.media.frames.file_frame = wp.media({
+				title: "Add Images to Slideshow",
+				button: {
+					text: "Add To Slideshow",
+			},
+				multiple: true
+			});
+ 
+			file_frame.on( 'select', function() {
+				var selection = file_frame.state().get('selection');
+				
+				selection.map( function( attachment ) {
+					attachment = attachment.toJSON();
+
+					var li = $("<li />").addClass("img_li");
+					var trash = $("<img />").attr("src", "<?php echo get_option('siteurl') . '/wp-content/plugins/' . basename(dirname(__FILE__)) . '/images/trash.png' ?>").addClass("trash");
+					var thumb = $("<img />").attr("src", attachment.url).addClass("img");
+					var details = $("<div />");
+				
+					var title = $("<input />").attr({
+						"type": "text",
+						"placeholder": "Title",
+						"class": "title"
+					}).appendTo(details);
+					var desc = $("<textarea />").attr({
+						"placeholder": "Description",
+						"class": "desc"
+					}).appendTo(details);
+					var href = $("<input />").attr({
+						"type": "text",
+						"placeholder": "Link to Webpage",
+						"class": "href"
+					}).appendTo(details);
+				
+					trash.appendTo(li);
+					thumb.appendTo(li);
+					details.appendTo(li);
+					li.appendTo("#sliderly_admin_gallery");
+				});
+				
+				$("#sliderly_admin_gallery").trigger('sortupdate')
+			});
+			
+			file_frame.open();
+		});
 		
 		$(".add_html").live("click", function(){
 			$("<li class='html_li'>\
@@ -326,11 +364,13 @@ function sliderly_options() {
 		<img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
 		</form>
 	</h2>
-	<p>
-		<a href="#" class="show_how_to_use">How do I use Sliderly?</a>
+	<p style="color: #777; ">
+		Changes save automagically. <a href="#" class="show_how_to_use">How do I use Sliderly?</a>
 	</p>
 	
 	<div id="how_to_use">
+		<a href="#" class="show_how_to_use">Close this window</a>.<br />
+		
 		<h3>How do I reorder my slides?</h3><br />
 		Simply click and drag the images around. Your changes will save automagically.<br /><br />
 		
@@ -385,7 +425,7 @@ function sliderly_options() {
 			</li>
 			<li class="spacer">&nbsp;</li>
 			
-			<?php query_posts(array('post_type'=>'slideshow')); ?>
+			<?php query_posts(array('post_type'=>'slideshow', 'posts_per_page' => 100)); ?>
 			
 			<?php
 				if (have_posts()) : while (have_posts()) : the_post();
@@ -402,16 +442,14 @@ function sliderly_options() {
 		
 		<div id="sliderly_meta">
 			<p class="sliderly_shortcode">[sliderly id=<span class="sliderly_id"></span> type=slideshow width=500 height=100]</p>
-			<a href="<?php echo admin_url(); ?>/media-upload.php?TB_iframe=1&amp;width=640&amp;height=85" class="thickbox button-primary add_media" id="content-add_media" title="Add Media" onclick="return false;">Add Image</a>
-			<a href="#" class="button-primary add_html" id="content-add_html" title="Add HTML" onclick="return false;">Add HTML</a>
+			<a href="#" class="button-primary add_media" title="Add Media">Add Image</a>
+			<a href="#" class="button-primary add_html" title="Add HTML">Add HTML</a>
 			<a href="#" class="button-secondary delete_sliderly">Delete This Sliderly</a>
 		</div>
 	
 		<ul id="sliderly_admin_gallery"></ul>
 		
 		<div style="clear: both; "></div>
-		
-		<p id="save_automagically" style="float: right; margin: -23px 10px 0 0; color: #777; ">Your changes are saved automagically.</p>
 		
 	</div>
 	
@@ -455,18 +493,6 @@ function create_slideshows() {
   );
 }
 
-function media_scripts() {
-wp_enqueue_script('media-upload');
-wp_enqueue_script('thickbox');
-wp_register_script('my-upload', array('media-upload','thickbox'));
-}
- 
-function media_styles() {
-wp_enqueue_style('thickbox');
-}
-
-add_action('admin_print_scripts', 'media_scripts');
-add_action('admin_print_styles', 'media_styles');
 add_action( 'init', 'create_slideshows' );
 add_action( 'admin_menu', 'sliderly_menu' );
 add_action( 'admin_init', 'register_mysettings' );
