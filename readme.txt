@@ -3,7 +3,7 @@ Contributors: dallas22ca
 Tags: slider, easy slider, easiest slider, simple slider, ajax
 Requires at least: 3.4.1
 Tested up to: 3.4.1
-Stable tag: 1.0.17
+Stable tag: 1.0.19
 License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -28,6 +28,8 @@ It comes with:
 * To force links to open in colorbox (a pop-off-the-page image viewer), set colorbox to true `[sliderly id=123 type=gallery colorbox=true]`.
 * Widget with intuitive interface for selecting gallery and type.
 * Hard-codable into a template via `<?php echo do_shortcode('[sliderly id=88 type=slideshow]'); ?>`.
+
+For those developers out there,the javascript is found at `js.php`. With a little magic, you can leverage the backend of Sliderly with your own custom plugin.
 
 In the back end of things, it creates a custom post type called `slideshow` and just stuffs a hash of info into the post's content.
 
@@ -59,6 +61,14 @@ In the back end of things, it creates a custom post type called `slideshow` and 
 1. The drag-and-drop, ajax-ified management interface.
 
 == Changelog ==
+
+= 1.0.19 =
+Add multiple files at once! - Thanks to Mike Jolley - http://mikejolley.com/2012/12/using-the-new-wordpress-3-5-media-uploader-in-plugins/
+Fix where the Sliderly sidebar only showed 10 latest slideshows (limit is now 100).
+
+
+= 1.0.18 =
+Added donate button =) and unique ID for each slide. The ID is `sliderly_{sliderly_id}_{slide_index}`.
 
 = 1.0.17 =
 Added support for HTML slides, fade transition for slideshows, and slideshow slide duration. Also added "How do I use Sliderly?" in the admin panel.
